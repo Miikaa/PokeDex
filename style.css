@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    font-family: "Tahoma", sans-serif;
+    font-family: 'Bahnschrift SemiBold';
     color: rgb(0, 0, 0);
 }
 
@@ -55,10 +55,11 @@ a {
 #content {
     margin: 0 auto;
     width: 500px;
+    font-family: 'Bahnschrift SemiBold';
 }
 
 .results {
-    font-family: "Tahoma", sans-serif;
+    font-family: 'Bahnschrift SemiBold';
     font-size: 24px;
     margin: 25px;
     width: 350px;
@@ -66,7 +67,7 @@ a {
     outline: dashed 1px black;
 }
 
-.quotes {
+.pokemon {
     width: 500px;
     height: 500px;
     background-image: url(assets/pokedexBackground.png);
@@ -74,11 +75,13 @@ a {
     margin: 0 auto;
 }
 
-.quote {
+.pokemen {
+    font-family: 'Bahnschrift SemiBold';
     inline-size: 460px;
     overflow-wrap: break-word;
 }
 
-.combinedQuotes {
+.combinedPokemon {
     padding-top: 124px;
+    padding-left: 10px;
 }

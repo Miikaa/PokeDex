@@ -48,11 +48,11 @@ async function showSearchQuote(cleaned) {
     let name = cleaned.name.charAt(0).toUpperCase() + cleaned.name.slice(1);
     search.value = "";
     document.getElementById("results").innerHTML = `
-    <div class = "quotes">
-        <div class = "combinedQuotes">
-            <h3 class = "quote">Name: ${name}</h3>
-            <h3 class = "quote">Ability: ${ability}</h3>
-            <h3 class = "quote">Type: ${type}</h3>
+    <div class = "pokemon">
+        <div class = "combinedPokemon">
+            <h3 class = "pokemen">Name: ${name}</h3>
+            <h3 class = "pokemen">Ability: ${ability}</h3>
+            <h3 class = "pokemen">Type: ${type}</h3>
             <img src="${cleaned.sprites.front_default}" id="pokemonImage"></img>
         </div>
     </div>
