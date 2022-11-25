@@ -4,6 +4,8 @@
 ## Selitys
 
 Pokedex-sivu, josta voi hakea nimellä pokemonista hieman tietoa.
+Linkki sivulle alla
+* [Pokedex](https://dainty-kitsune-382144.netlify.app/)
 
 ## Tekijät
 
