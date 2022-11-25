@@ -6,16 +6,12 @@ var character;
 const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/";
 var search = document.getElementById("search");
 
-// Luodaan sivulle otsikko.
-document.getElementById("heading").innerHTML =
-    "PokeDex<br>";
-
 // Sama kuin aikasemmin, mutta tällä kertaa hakukenttä eikä dropdown.
 function searchFunction() {
-    var hakusana = document.getElementById("search").value;
+    var hakusana = search.value;
     hakusana = hakusana.trim();
     character = hakusana.toLowerCase();
-    document.getElementById("search").value = "";
+    search.value = "";
     loadJSON();
 }
 
@@ -37,7 +33,6 @@ async function loadJSON() {
 
 async function showSearchQuote(cleaned) {
     let type, ability;
-    //console.log(cleaned.types.type.name)
     for (let i in cleaned.types) {
         type += cleaned.types[i].type.name + " ";
     }
@@ -45,17 +40,20 @@ async function showSearchQuote(cleaned) {
         ability += cleaned.abilities[i].ability.name + " ";
     }
     type = type.substring(9);
+    type = type.replace(/-/g, " ");
     ability = ability.substring(9);
-    ability = ability.replace("-", " ");
+    ability = ability.replace(/-/g, " ");
 
     let name = cleaned.name.charAt(0).toUpperCase() + cleaned.name.slice(1);
-    document.getElementById("search").value = "";
+    search.value = "";
     document.getElementById("results").innerHTML = `
     <div class = "quotes">
-        <h3 class = "quote">Name: ${name}</h3>
-        <h3 class = "quote">Ability: ${ability}</h3>
-        <h3 class = "quote">Type: ${type}</h3>
-        <img src="${cleaned.sprites.front_default}" id="pokemonImage"></image>
+        <div class = "combinedQuotes">
+            <h3 class = "quote">Name: ${name}</h3>
+            <h3 class = "quote">Ability: ${ability}</h3>
+            <h3 class = "quote">Type: ${type}</h3>
+            <img src="${cleaned.sprites.front_default}" id="pokemonImage"></img>
+        </div>
     </div>
     `;
 }

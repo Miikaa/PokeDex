@@ -7,31 +7,17 @@ body {
     color: rgb(0, 0, 0);
 }
 
+.logo {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
 h1 {
     text-align: center;
     color: rgb(0, 0, 0);
     padding: 30px;
     padding-top: 19px;
 }
-
-form {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#searchButton {
-    font-family: "Game of Thrones", sans-serif;
-    border: none;
-    outline: none;
-    background-color: white;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    padding: 5px 10px 3px 10px;
-    border-radius: 4px;
-    font-size: 10px;
-}
-
 
 h3 {
     text-align: center;
@@ -44,9 +30,9 @@ p {
 #githubLogo {
     position: fixed;
     bottom: 0;
-    right: 0;
-    height: 100px;
-    width: 100px;
+    left: 0;
+    height: 50px;
+    width: 50px;
 }
 
 #pokemonImage {
@@ -59,4 +45,40 @@ p {
 
 a {
     text-align: center;
+}
+
+#searchButton {
+    background-color: rgba(255, 0, 0, 0.8);
+    color: black;
+}
+
+#content {
+    margin: 0 auto;
+    width: 500px;
+}
+
+.results {
+    font-family: arial;
+    font-size: 24px;
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+    outline: dashed 1px black;
+}
+
+.quotes {
+    width: 500px;
+    height: 500px;
+    background-image: url(assets/pokedexBackground.png);
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+
+.quote {
+    inline-size: 460px;
+    overflow-wrap: break-word;
+}
+
+.combinedQuotes {
+    padding-top: 124px;
 }

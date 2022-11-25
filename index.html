@@ -5,20 +5,31 @@
     <title>Pokedex</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
 </head>
 
 <body>
-    <h1 id="heading"></h1>
-    <form name="characterList" id="characterList">
-        Search for a pokemon:
-        <input type="text" id="search">
-        <input type="button" id="searchButton" value="search" onclick="searchFunction()">
-        <br><br>
-    </form>
-    <div id="results"></div>
-    <a href="https://github.com/inkspinks99/Game-of-Thrones-quote-generator" target="_blank"><img
-            src="assets/github.png" id="githubLogo" title="Github repository"></a>
+    <div class="logo">
+        <img src="assets/Pokedex.png"></img>
+    </div>
+    <div>
+
+        <div class="input-group mb-3 col-5" id="content">
+            <input type="text" id="search" class="form-control" placeholder="Search for a pokemon"
+                aria-label="Search for a pokemon" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" value="search" id="searchButton"
+                    onclick="searchFunction()">Search</button>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div id="results">
+    </div>
+    <a href="https://github.com/Miikaa/PokeDex" target="_blank"><img src="assets/github.svg" id="githubLogo"></a>
     <script src="main.js"></script>
 </body>
 
