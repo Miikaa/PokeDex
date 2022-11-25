@@ -8,6 +8,7 @@ var search = document.getElementById("search");
 
 // Sama kuin aikasemmin, mutta tällä kertaa hakukenttä eikä dropdown.
 function searchFunction() {
+    document.getElementById("results").innerHTML = "";
     var hakusana = search.value;
     hakusana = hakusana.trim();
     character = hakusana.toLowerCase();
