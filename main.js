@@ -1,10 +1,12 @@
-// Fokusoidaan hakukenttä heti kun sivu lataa, että voi alkaa etsimään pokemona ilman että tarvitsee klikata hakukohtaa.
-window.onload = document.getElementById("search").select();
-
 // Luodaan tarvittavat muuttujat ja annetaan niille arvot, jotka ei muutu myöhemmin.
 var character;
 const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/";
 var search = document.getElementById("search");
+var searchButton = document.getElementById("searchButton");
+var results = document.getElementById("results");
+
+// Fokusoidaan hakukenttä heti kun sivu lataa, että voi alkaa etsimään pokemona ilman että tarvitsee klikata hakukohtaa.
+window.onload = search.select();
 
 /**  
  * Otetaan vastaan hakukentän tulos, trimmataan välilyönnit alusta ja lopusta pois, sekä muutetaan teksti pieniksi kirjaimiski.
@@ -12,7 +14,7 @@ var search = document.getElementById("search");
  **/
 
 function searchFunction() {
-    document.getElementById("results").innerHTML = "";
+    results.innerHTML = "";
     var hakusana = search.value;
     hakusana = hakusana.trim();
     character = hakusana.toLowerCase();
@@ -62,7 +64,7 @@ async function showPokemon(cleaned) {
     // Tyhjennetään hakukenttä
     search.value = "";
     // Luodaan uusi div nimeltä pokemon, jonka sisälle tulee Name, Ability ja Type, sekä kuva perään vielä
-    document.getElementById("results").innerHTML = `
+    results.innerHTML = `
     <div class = "pokemon">
         <div class = "combinedPokemon">
             <h3 class = "pokemen">Name: ${name}</h3>
@@ -78,6 +80,6 @@ async function showPokemon(cleaned) {
 search.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        document.getElementById("searchButton").click();
+        searchButton.click();
     }
 });
