@@ -1,12 +1,16 @@
-// Fokusoidaan dropdown heti kun sivu lataa, että voi alkaa etsimään henkilöä ilman klikkausta.
+// Fokusoidaan hakukenttä heti kun sivu lataa, että voi alkaa etsimään pokemona ilman että tarvitsee klikata hakukohtaa.
 window.onload = document.getElementById("search").select();
 
-// Luodaan tarvittavat muuttujat ja annetaan niille arvot, mitkä ei muutu myöhemmin.
+// Luodaan tarvittavat muuttujat ja annetaan niille arvot, jotka ei muutu myöhemmin.
 var character;
 const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/";
 var search = document.getElementById("search");
 
-// Sama kuin aikasemmin, mutta tällä kertaa hakukenttä eikä dropdown.
+/**  
+ * Otetaan vastaan hakukentän tulos, trimmataan välilyönnit alusta ja lopusta pois, sekä muutetaan teksti pieniksi kirjaimiski.
+ * Sitten lähetetään hakutulos funktioon loadJSON().
+ **/
+
 function searchFunction() {
     document.getElementById("results").innerHTML = "";
     var hakusana = search.value;
@@ -16,11 +20,12 @@ function searchFunction() {
     loadJSON();
 }
 
-/** Luodaan async-funktio, joka ottaa vastaan aikasemmin määritellyn linkin
- *  ja lisää sen perään hakutuloksesta saadun henkilön nimen.
+/** 
+ * Luodaan async-funktio, joka ottaa vastaan aikasemmin määritellyn api-linkin
+ * ja lisää sen perään hakutuloksesta saadun pokemonin nimen.
  *
  * Haetaan APIn tulos await fetch-komennolla ja muotoillaan tulos JSON-muotoon .json()-komennolla.
- * Sitten lähetetään tulos showQuote-funktioon.
+ * Sitten lähetetään tulos showPokemon-funktioon.
  **/
 
 async function loadJSON() {
@@ -28,11 +33,17 @@ async function loadJSON() {
         var url = `${pokemonUrl}` + character;
         const response = await fetch(url);
         const cleaned = await response.json();
-        showSearchQuote(cleaned);
+        showPokemon(cleaned);
     }
 }
 
-async function showSearchQuote(cleaned) {
+/**
+ * Otetaan vastaan loadJSON()-funktiosta lähetetyn "cleaned"-muuttujan json-sisältö.
+ * Luodaan muuttujat tyypille ja abilitylle.
+ * Loopataan kaikkien tyyppien ja abilitien läpi, ja lisätään ne omiin muuttujiinsa.
+ */
+
+async function showPokemon(cleaned) {
     let type, ability;
     for (let i in cleaned.types) {
         type += cleaned.types[i].type.name + " ";
@@ -40,13 +51,17 @@ async function showSearchQuote(cleaned) {
     for (let i in cleaned.abilities) {
         ability += cleaned.abilities[i].ability.name + " ";
     }
+    // Koska api palauttaa ensimmäisenä "Undefined", karsitaan tekstin ensimmäiset 9 kirjainta pois substring(9)-metodilla
     type = type.substring(9);
+    // Joissain ability-nimissä on viiva välilyönnin sijaan, niin korvataan viivat välilyöneillä globaalisti replace()-metodilla
     type = type.replace(/-/g, " ");
     ability = ability.substring(9);
     ability = ability.replace(/-/g, " ");
-
+    // Tehdään nimen ensimmäisestä kirjaimesta iso, ja liitetään loput tekstistä uudelleen perään
     let name = cleaned.name.charAt(0).toUpperCase() + cleaned.name.slice(1);
+    // Tyhjennetään hakukenttä
     search.value = "";
+    // Luodaan uusi div nimeltä pokemon, jonka sisälle tulee Name, Ability ja Type, sekä kuva perään vielä
     document.getElementById("results").innerHTML = `
     <div class = "pokemon">
         <div class = "combinedPokemon">
@@ -59,7 +74,7 @@ async function showSearchQuote(cleaned) {
     `;
 }
 
-// Luotiin event listener kuuntelemaan napin painalluksia, ja jos painaa enteriä, simuloidaan napin painallus.
+// Luodaan eventlistener seuraamaan hakukenttän napinpainalluksia, jotta saadaan haku alkamaan myös vain painamalla enteriä
 search.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
